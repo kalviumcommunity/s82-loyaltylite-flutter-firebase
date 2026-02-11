@@ -1,204 +1,113 @@
-# LoyaltyLite
+# Flutter Architecture & Dart Fundamentals
 
-**Sprint #2 – Project Plan Document**  
-Team 03  
-Team Lead: Rohith  
+## 📌 Project Overview
 
----
+This project explores the core architecture of **Flutter**, Google’s modern framework for building high-performance, cross-platform applications, and the **Dart** programming language that powers it.
 
-## 📌 Problem Theme  
-Loyalty Platform for Small Businesses
+By completing this lesson, I gained an understanding of:
 
----
-
-## 1. Problem Statement & Solution Overview
-
-Small businesses in Tier-2 and Tier-3 towns face difficulty in building customer loyalty because they do not have access to simple and affordable digital tools to track repeat customers or manage reward programs. Most existing loyalty solutions are complex, costly, or built for large enterprises, making them unsuitable for small shop owners.
-
-Our solution is a mobile-first loyalty management application built using **Flutter and Firebase**. The app enables small business owners to register customers, track visits or purchases, and reward loyal customers digitally in a simple and efficient way.
-
-A mobile application is ideal because shop owners primarily use smartphones, require real-time updates, and need an easy-to-use system without additional hardware or training.
-
-The primary users are small shop owners such as grocery stores, salons, cafés, and local service providers. This problem is especially relevant now due to increased smartphone usage and the growing need for digital transformation among small businesses.
+Flutter’s layered architecture
+The widget tree and widget-based UI system
+Reactive rendering using setState()
+Essential Dart language features
+How Flutter enables seamless Android and iOS development with a single codebase
 
 ---
 
-## 2. Scope & Boundaries
+# 🎯 Objective
 
-### ✅ In Scope for Sprint #2
-
-The sprint focuses on building a functional **Minimum Viable Product (MVP)** with core features, including:
-
-- Firebase Authentication for shop owners  
-- Firestore database integration  
-- Essential Flutter screens:
-  - Login  
-  - Register  
-  - Dashboard  
-  - Add Customer  
-  - Reward Tracking  
-- Basic state management  
-- Generating a working Android APK  
-
-### ❌ Out of Scope
-
-The following features are excluded from this sprint:
-
-- Payment integration  
-- Push notifications  
-- Analytics dashboards  
-- Multi-language support  
-- Customer-facing mobile application  
+To understand Flutter’s architecture, widget-based UI system, and Dart fundamentals for building interactive, reactive, and visually consistent mobile applications.
 
 ---
 
-## 3. Roles & Responsibilities
+# 🏗️ 1. Flutter Architecture
 
-### 👨‍💼 Rohith – Team Lead
-- Project coordination  
-- Sprint planning  
-- Feature prioritization  
-- Supporting Firebase integration  
+Flutter is built using three core layers:
 
-### 🎨 Amarnath T – Frontend (Flutter) Lead
-- Building Flutter UI screens  
-- Managing navigation  
-- Handling UI state  
-- Integrating frontend with Firebase  
+## 1️⃣ Framework Layer (Dart)
 
-### ☁️ Sam Babu P – Firebase Lead
-- Firebase Authentication setup  
-- Firestore database structure  
-- CRUD operations  
-- Security rules configuration  
+Written in **Dart**
+Includes:
+  - Material & Cupertino widgets
+  - Rendering libraries
+  - Animation system
+  - Gesture handling
 
-### 🧪 K V Pavan Rohith Ratna – Testing & Deployment Lead
-- Manual testing  
-- Validating authentication and database flows  
-- Generating APK build  
-- Maintaining documentation  
+This is where developers write application UI and logic.
 
 ---
 
-## 4. Sprint Timeline (4 Weeks)
+## 2️⃣ Engine Layer (C++)
 
-### 📅 Week 1 – Setup and Design
-- Finalize app concept and MVP features  
-- Design basic UI wireframes  
-- Set up Flutter project structure  
-- Create Firebase project  
-- Connect Firebase with Flutter app  
+Built using **C++**
+Uses the **Skia graphics engine**
+Handles:
+  - Rendering
+  - Text layout
+  - Platform channels
 
-### 📅 Week 2 – Core Development
-- Implement login and registration flows  
-- Configure Firestore collections  
-- Build dashboard screen  
-- Develop customer registration and data storage  
+Flutter renders everything itself instead of relying on native UI components.
 
-### 📅 Week 3 – Integration and Testing
-- Connect frontend screens with Firebase backend  
-- Test CRUD operations  
-- Implement form validation and error handling  
-- Conduct manual testing on Android devices  
+-----
 
-### 📅 Week 4 – MVP Completion and Deployment
-- Freeze features  
-- Polish UI  
-- Fix bugs  
-- Perform final testing  
-- Generate APK build  
-- Prepare for demo and submission  
+## 3️⃣ Embedder Layer
+
+Connects Flutter to platform-specific APIs:
+  - Android
+  - iOS
+  - Web
+  - Desktop
+
+It integrates Flutter with the host operating system.
 
 ---
 
-## 5. Deployment and Testing Plan
+## 🔑 Key Concept
 
-Testing will include:
+Flutter does **not** use native UI components.
 
-- Manual testing of login and registration flows  
-- Firestore read/write operations  
-- Navigation between screens  
-- Data consistency validation  
-- Basic Flutter widget testing (where applicable)  
+Instead, it renders every pixel using the **Skia engine**, which ensures:
 
-Deployment Plan:
-
-- Generate APK using Flutter build tools  
-- Share APK via Google Drive  
-- (Optional) Host web version using Firebase Hosting  
+Pixel-perfect UI consistency
+Smooth animations
+Identical design across platforms
+High performance
 
 ---
 
-## 6. Minimum Viable Product (MVP)
+# 🌳 2. Understanding the Widget Tree
 
-The MVP will include:
+In Flutter, **everything is a widget**.
 
-- Shop owner authentication using Firebase  
-- Customer registration  
-- Reward / visit tracking  
-- Real-time Firestore data synchronization  
-- Responsive Flutter UI  
-- Demo-ready APK build  
+Examples:
+Text
+Buttons
+Layout containers
+Entire screens
 
----
+Widgets are organized in a hierarchical structure called the **Widget Tree**.
 
-## 7. Functional Requirements
+Example structure:
 
-The application must:
 
-- Allow users to register, log in, and log out securely  
-- Enable shop owners to add and view customer data  
-- Store and retrieve customer and reward data from Firestore  
-- Update dashboard in real time based on database changes  
+Each widget is nested inside another widget, forming a parent-child relationship.
 
 ---
 
-## 8. Non-Functional Requirements
+## 🔄 Types of Widgets
 
-The application should:
+### 🟢 StatelessWidget
 
-- Provide smooth UI transitions  
-- Be responsive across different screen sizes  
-- Support at least 100 concurrent users  
-- Enforce security using Firebase Authentication and Firestore rules  
-- Ensure reliable real-time data synchronization  
+Used for static UI
+Does not change after being built
+No mutable state
 
----
+Example:
 
-## 9. Success Metrics
-
-The sprint will be considered successful if:
-
-- All MVP features are implemented and functional  
-- Firebase Authentication and Firestore are correctly integrated  
-- APK builds without errors  
-- The project receives positive feedback during the mentor demo  
-
----
-
-## 10. Risks and Mitigation
-
-### ⚠️ Risk: Firebase configuration errors  
-Mitigation: Use predefined Firestore schema and sample data.
-
-### ⚠️ Risk: UI and integration issues  
-Mitigation: Early integration and testing during Week 3.
-
-### ⚠️ Risk: Time constraints  
-Mitigation: Strict focus on MVP features and avoidance of scope creep.
-
----
-
-## 🚀 Tech Stack
-
-- Flutter  
-- Dart  
-- Firebase Authentication  
-- Cloud Firestore  
-- Android APK Deployment  
-
----
-
-## 📱 Project Status
-
-Currently in Sprint #2 – MVP Development Phase.
+dart
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text("Hello Flutter");
+  }
+}
