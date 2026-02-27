@@ -40,9 +40,9 @@ class AuthRepositoryImpl implements AuthRepository {
       final profile = await _firestoreService.fetchUserProfile(user.uid);
       return Success<UserProfile>(profile);
     } on FirebaseAuthException catch (e, st) {
-      return Failure(AuthFailure(e.message ?? 'Auth error', cause: e, stackTrace: st));
+      return Failure(AuthFailure(_mapFirebaseAuthError(e), cause: e, stackTrace: st));
     } on FirebaseException catch (e, st) {
-      return Failure(FirestoreFailure(e.message ?? 'Firestore error', cause: e, stackTrace: st));
+      return Failure(FirestoreFailure(_mapFirestoreError(e), cause: e, stackTrace: st));
     } catch (e, st) {
       return Failure(AuthFailure('Unknown sign up error', cause: e, stackTrace: st));
     }
@@ -65,9 +65,9 @@ class AuthRepositoryImpl implements AuthRepository {
       final profile = await _firestoreService.fetchUserProfile(user.uid);
       return Success<UserProfile>(profile);
     } on FirebaseAuthException catch (e, st) {
-      return Failure(AuthFailure(e.message ?? 'Auth error', cause: e, stackTrace: st));
+      return Failure(AuthFailure(_mapFirebaseAuthError(e), cause: e, stackTrace: st));
     } on FirebaseException catch (e, st) {
-      return Failure(FirestoreFailure(e.message ?? 'Firestore error', cause: e, stackTrace: st));
+      return Failure(FirestoreFailure(_mapFirestoreError(e), cause: e, stackTrace: st));
     } catch (e, st) {
       return Failure(AuthFailure('Unknown sign in error', cause: e, stackTrace: st));
     }
@@ -106,9 +106,41 @@ class AuthRepositoryImpl implements AuthRepository {
       final profile = await _firestoreService.fetchUserProfile(user.uid);
       return Success<UserProfile?>(profile);
     } on FirebaseException catch (e, st) {
-      return Failure<UserProfile?>(FirestoreFailure(e.message ?? 'Firestore error', cause: e, stackTrace: st));
+      return Failure<UserProfile?>(FirestoreFailure(_mapFirestoreError(e), cause: e, stackTrace: st));
     } catch (e, st) {
       return Failure<UserProfile?>(AuthFailure('Failed to get current user', cause: e, stackTrace: st));
+    }
+  }
+
+  String _mapFirebaseAuthError(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'email-already-in-use':
+        return 'An account already exists for that email.';
+      case 'invalid-email':
+        return 'The email address is not valid.';
+      case 'weak-password':
+        return 'Password is too weak. Use at least 6 characters.';
+      case 'operation-not-allowed':
+        return 'Email/password sign-in is disabled in Firebase.';
+      case 'network-request-failed':
+        return 'Network error. Check your connection and try again.';
+      case 'too-many-requests':
+        return 'Too many attempts. Please wait and try again.';
+      default:
+        return e.message ?? 'Authentication error.';
+    }
+  }
+
+  String _mapFirestoreError(FirebaseException e) {
+    switch (e.code) {
+      case 'permission-denied':
+        return 'Permission denied when accessing your data.';
+      case 'unavailable':
+        return 'Service unavailable. Please try again shortly.';
+      case 'failed-precondition':
+        return 'Firestore precondition failed.';
+      default:
+        return e.message ?? 'Firestore error.';
     }
   }
 }
