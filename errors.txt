@@ -1,0 +1,27 @@
+Analyzing loyalty_lite...
+
+  error - test\widget_test.dart:16:35 - The name 'MyApp' isn't a class. Try correcting the name to match an existing class. - creation_with_non_type
+warning - lib\data\repositories_impl\auth_repository_impl.dart:7:8 - Unused import: '../models/user_model.dart'. Try removing the import directive. - unused_import
+warning - lib\main.dart:9:8 - Unused import: 'core/utils/result.dart'. Try removing the import directive. - unused_import
+warning - lib\presentation\screens\dashboard_screen.dart:181:7 - The declaration '_QuickActionRow' isn't referenced. Try removing the declaration of '_QuickActionRow'. - unused_element
+warning - lib\presentation\screens\login_screen.dart:5:8 - Unused import: '../../core/utils/result.dart'. Try removing the import directive. - unused_import
+warning - lib\presentation\screens\register_screen.dart:4:8 - Unused import: '../../core/utils/result.dart'. Try removing the import directive. - unused_import
+warning - lib\presentation\widgets\customer_form_modal.dart:5:8 - Unused import: '../../core/utils/result.dart'. Try removing the import directive. - unused_import
+warning - lib\presentation\widgets\customer_tile.dart:2:8 - Unused import: 'package:provider/provider.dart'. Try removing the import directive. - unused_import
+warning - lib\presentation\widgets\customer_tile.dart:5:8 - Unused import: '../providers/customer_provider.dart'. Try removing the import directive. - unused_import
+   info - lib\core\exceptions\failures.dart:4:3 - Parameters ''message', 'cause', and 'stackTrace'' could be super parameters. Trying converting ''message', 'cause', and 'stackTrace'' to super parameters. - use_super_parameters
+   info - lib\core\exceptions\failures.dart:9:3 - Parameters ''message', 'cause', and 'stackTrace'' could be super parameters. Trying converting ''message', 'cause', and 'stackTrace'' to super parameters. - use_super_parameters
+   info - lib\core\exceptions\failures.dart:14:3 - Parameters ''message', 'cause', and 'stackTrace'' could be super parameters. Trying converting ''message', 'cause', and 'stackTrace'' to super parameters. - use_super_parameters
+   info - lib\core\exceptions\failures.dart:19:3 - Parameters ''message', 'cause', and 'stackTrace'' could be super parameters. Trying converting ''message', 'cause', and 'stackTrace'' to super parameters. - use_super_parameters
+   info - lib\presentation\screens\dashboard_screen.dart:84:70 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\presentation\screens\dashboard_screen.dart:193:34 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\presentation\screens\dashboard_screen.dart:199:55 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\presentation\screens\login_screen.dart:119:74 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\presentation\widgets\customer_form_modal.dart:60:55 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\presentation\widgets\customer_form_modal.dart:63:43 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\presentation\widgets\customer_form_modal.dart:113:50 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\presentation\widgets\customer_list.dart:47:37 - Unnecessary use of multiple underscores. Try using '_'. - unnecessary_underscores
+   info - lib\presentation\widgets\glass_card.dart:21:29 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - lib\presentation\widgets\glass_card.dart:23:48 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+
+23 issues found.

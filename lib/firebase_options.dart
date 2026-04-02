@@ -5,10 +5,10 @@ class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     // Replace the values below with your platform-specific Firebase configs.
     return const FirebaseOptions(
-      apiKey: 'REPLACE_ME',
-      appId: 'REPLACE_ME',
-      messagingSenderId: 'REPLACE_ME',
-      projectId: 'REPLACE_ME',
+      apiKey: 'AIzaSyDVqCbKowH8TxHbC3ouVfzo2dopAYR4WcM',
+      appId: '1:1077327528783:web:ddee937897b573b4c0bb3a',
+      messagingSenderId: '1077327528783',
+      projectId: 'loyalty-lite-bfde0',
     );
   }
 }
