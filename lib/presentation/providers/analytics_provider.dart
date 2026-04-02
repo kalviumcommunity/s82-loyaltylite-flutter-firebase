@@ -23,12 +23,15 @@ class AnalyticsProvider extends ChangeNotifier {
   Future<void> refresh() async {
     _status = AnalyticsStatus.loading;
     notifyListeners();
+    print('AnalyticsProvider: Refreshing data...');
     final result = await _getAnalytics();
     result.fold((value) {
+      print('AnalyticsProvider: Data fetched successfully: $value');
       _data = value;
       _status = AnalyticsStatus.loaded;
       _error = null;
     }, (err) {
+      print('AnalyticsProvider: Error fetching data: $err');
       _status = AnalyticsStatus.error;
       _error = err;
     });

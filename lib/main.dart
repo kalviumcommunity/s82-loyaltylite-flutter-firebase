@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/constants/app_constants.dart';
+import 'core/theme/app_theme.dart';
 import 'core/utils/result.dart';
 import 'data/repositories_impl/auth_repository_impl.dart';
 import 'data/repositories_impl/loyalty_repository_impl.dart';
@@ -121,10 +122,7 @@ class LoyaltyLiteApp extends StatelessWidget {
       child: MaterialApp(
         title: AppConstants.appName,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-          useMaterial3: true,
-        ),
+        theme: AppTheme.darkTheme,
         home: Consumer<app.AuthProvider>(
           builder: (context, auth, _) {
             switch (auth.status) {

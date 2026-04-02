@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/theme/app_theme.dart';
 import '../providers/analytics_provider.dart';
+import '../widgets/stat_card.dart';
 
 class AnalyticsSummary extends StatelessWidget {
   const AnalyticsSummary({super.key});
@@ -18,43 +21,52 @@ class AnalyticsSummary extends StatelessWidget {
       builder: (context, view, _) {
         switch (view.status) {
           case AnalyticsStatus.loading:
-            return const LinearProgressIndicator(minHeight: 3);
+            return const Center(
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: CircularProgressIndicator(color: AppColors.primary),
+              ),
+            );
           case AnalyticsStatus.error:
-            return const Text('Failed to load analytics');
+            return Center(
+              child: Text(
+                'Failed to load analytics',
+                style: GoogleFonts.inter(color: AppColors.error),
+              ),
+            );
           default:
             return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _StatCard(label: 'Customers', value: view.totalCustomers.toString()),
-                _StatCard(label: 'Points', value: view.totalPoints.toString()),
-                _StatCard(label: 'Gold+', value: view.goldOrAbove.toString()),
+                Expanded(
+                  child: StatCard(
+                    label: 'Customers',
+                    value: view.totalCustomers.toString(),
+                    icon: Icons.people_alt_rounded,
+                    gradient: AppGradients.purpleCard,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: StatCard(
+                    label: 'Points',
+                    value: view.totalPoints.toString(),
+                    icon: Icons.stars_rounded,
+                    gradient: AppGradients.goldCard,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: StatCard(
+                    label: 'Gold+',
+                    value: view.goldOrAbove.toString(),
+                    icon: Icons.diamond_rounded,
+                    gradient: AppGradients.greenCard,
+                  ),
+                ),
               ],
             );
         }
       },
-    );
-  }
-}
-
-class _StatCard extends StatelessWidget {
-  const _StatCard({required this.label, required this.value});
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(label, style: Theme.of(context).textTheme.labelLarge),
-            const SizedBox(height: 4),
-            Text(value, style: Theme.of(context).textTheme.titleMedium),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -64,12 +64,27 @@ class CustomerProvider extends ChangeNotifier {
     ));
   }
 
-  Future<Result<Customer>> addCustomer({required String name, String? phone, int initialPoints = 0}) {
-    return _createCustomer(CreateCustomerParams(
+  Future<Result<Customer>> addCustomer({required String name, String? phone, int initialPoints = 0}) async {
+    final result = await _createCustomer(CreateCustomerParams(
       name: name,
       phone: phone,
       initialPoints: initialPoints,
     ));
+
+    result.fold((customer) {
+      // Notify AnalyticsProvider to refresh data
+      notifyListeners();
+      final analyticsProvider = Provider.of<AnalyticsProvider>(
+        AppConstants.navigatorKey.currentContext!,
+        listen: false,
+      );
+      analyticsProvider.refresh();
+    }, (error) {
+      // Handle error if needed
+      print('Error adding customer: $error');
+    });
+
+    return result;
   }
 
   Future<Result<Customer>> updatePoints({
